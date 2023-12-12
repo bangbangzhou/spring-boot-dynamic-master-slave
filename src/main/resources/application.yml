@@ -1,3 +1,8 @@
+
+
+server:
+  port: 8082
+
 spring:
   datasource:
     master:
@@ -10,10 +15,6 @@ spring:
       password: root
       url: jdbc:mysql://localhost:3306/backend_db?useUnicode=true&characterEncoding=utf8
       driver-class-name: com.mysql.cj.jdbc.Driver
-
-
-server:
-  port: 8082
 
 
 mybatis-plus:

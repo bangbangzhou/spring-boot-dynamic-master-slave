@@ -27,6 +27,7 @@ public class DynamicDataSourceConfig {
     @Autowired
     private DataSource slaveDataSource;
 
+    // 配置动态数据源
     @Bean
     @Primary
     public DataSource dynamicDataSource() {
@@ -38,10 +39,9 @@ public class DynamicDataSourceConfig {
         dynamicDataSource.setTargetDataSources(targetDataSources);
         dynamicDataSource.setDefaultTargetDataSource(masterDataSource); // 设置默认数据源
         return dynamicDataSource;
-
-
     }
 
+    // 配置 MyBatis 的 SqlSessionFactory
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dynamicDataSource) throws Exception {
         MybatisSqlSessionFactoryBean sessionFactoryBean = new MybatisSqlSessionFactoryBean();
@@ -54,6 +54,7 @@ public class DynamicDataSourceConfig {
         return sessionFactoryBean.getObject();
     }
 
+    // 配置 MyBatis 的 SqlSessionTemplate
     @Bean
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
